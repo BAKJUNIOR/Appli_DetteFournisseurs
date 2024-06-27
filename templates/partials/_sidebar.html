@@ -1,27 +1,51 @@
 {% load static %}
 
+<style>
+    .nav-item.active > .nav-link {
+  background-color: #4b2db9;
+  color: #fff;
+}
+
+.nav-item .sub-menu .nav-item.active > .nav-link {
+  color:  #db773b;
+}
+
+.nav-item .sub-menu .nav-item.active > .nav-link:hover {
+  background-color: #e9ecef;
+}
+
+</style>
+
+{% url 'Gestn_fournisseurs:Ajouter_fournisseur' as Ajouter_fournisseur_fournisseur_url %}
+{% url 'Gestn_fournisseurs:Liste_fournisseurs' as Liste_fournisseurs_Liste_fournisseurs_url %}
+
 <nav class="sidebar sidebar-offcanvas" id="sidebar">
-        <ul class="nav">
-          <li class="nav-item">
-            <a class="nav-link" href="index.html">
-              <i class="mdi mdi-grid-large menu-icon"></i>
-              <span class="menu-title">Dashboard</span>
-            </a>
+  <ul class="nav">
+    <li class="nav-item">
+      <a class="nav-link" href="{% url 'Accueil' %}">
+        <i class="mdi mdi-grid-large menu-icon"></i>
+        <span class="menu-title">Tableau de bord</span>
+      </a>
+    </li>
+    <li class="nav-item nav-category">Gestion fournisseurs</li>
+    <li class="nav-item {% if request.path == Ajouter_fournisseur_fournisseur_url or request.path == Liste_fournisseurs_Liste_fournisseurs_url %}active{% endif %}">
+      <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="{% if request.path == Ajouter_fournisseur_fournisseur_url or request.path == Liste_fournisseurs_Liste_fournisseurs_url %}true{% else %}false{% endif %}" aria-controls="ui-basic">
+        <i class="menu-icon mdi mdi-floor-plan"></i>
+        <span class="menu-title">Fournisseurs</span>
+        <i class="menu-arrow"></i>
+      </a>
+      <div class="collapse {% if request.path == Ajouter_fournisseur_fournisseur_url or request.path == Liste_fournisseurs_Liste_fournisseurs_url %}show{% endif %}" id="ui-basic">
+        <ul class="nav flex-column sub-menu">
+          <li class="nav-item {% if request.path == Ajouter_fournisseur_fournisseur_url %}active{% endif %}">
+            <a class="nav-link" href="{% url 'Gestn_fournisseurs:Ajouter_fournisseur' %}">Ajouter fournisseur</a>
           </li>
-          <li class="nav-item nav-category">Gestion fournisseurs</li>
-          <li class="nav-item">
-            <a class="nav-link" data-bs-toggle="collapse" href="#ui-basic" aria-expanded="false" aria-controls="ui-basic">
-              <i class="menu-icon mdi mdi-floor-plan"></i>
-              <span class="menu-title">fournisseurs</span>
-              <i class="menu-arrow"></i> 
-            </a>
-            <div class="collapse" id="ui-basic">
-              <ul class="nav flex-column sub-menu">
-                <li class="nav-item"> <a class="nav-link" href={% static "pages/ui-features/buttons.html" %}>Ajouter fournisseur</a></li>
-                <li class="nav-item"> <a class="nav-link" href={% static "pages/ui-features/dropdowns.html" %}>Liste des fournisseurs</a></li>
-              </ul>
-            </div>
+          <li class="nav-item {% if request.path == Liste_fournisseurs_Liste_fournisseurs_url %}active{% endif %}">
+            <a class="nav-link" href="{% url 'Gestn_fournisseurs:Liste_fournisseurs' %}">Liste des fournisseurs</a>
           </li>
+        </ul>
+      </div>
+    </li>
+
           <li class="nav-item nav-category">Forms and Datas</li>
           <li class="nav-item">
             <a class="nav-link" data-bs-toggle="collapse" href="#form-elements" aria-expanded="false" aria-controls="form-elements">

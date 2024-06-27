@@ -1,0 +1,156 @@
+{% extends 'partials/header.html' %}
+{% load static %}
+{% block content %}
+
+    <style>
+    .error-message {
+    color: red;
+    font-weight: bold;
+   }
+
+    </style>
+
+<div class="container-scroller">
+    <!-- partial:partials/_navbar.html -->
+    {% include 'partials/_navbar.html' %}
+    <!-- partial -->
+
+    <div class="container-fluid page-body-wrapper">
+        <!-- partial:partials/_settings-panel.html -->
+        {% include 'partials/_settings-panel.html' %}
+        <!-- partial -->
+
+        <!-- partial:partials/_sidebar.html -->
+        {% include 'partials/_sidebar.html' %}
+        <!-- partial -->
+
+         <div class="main-panel">
+            <div class="content-wrapper">
+                <div class="row">
+                    <div class="col-9 grid-margin stretch-card" style="padding-left: 100px;">
+                        <div class="card">
+                            <div class="card-body">
+                                <h4 class="card-title">Ajouter des fournisseurs</h4>
+                                <p class="card-description">
+                                    Enregistrer un fournisseur de l'entreprise
+                                </p>
+                                <form class="forms-sample" method="post" enctype="multipart/form-data">
+                                    {% csrf_token %}
+                                    <div class="form-group">
+                                        <label for="id_nom">Nom</label>
+                                        <input type="text" class="form-control" id="id_nom" name="nom"
+                                            placeholder="Nom" required>
+                                        {% if form.nom.errors %}
+                                            <span class="error-message">{{ form.nom.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_adresse">Adresse</label>
+                                        <input type="text" class="form-control" id="id_adresse" name="adresse"
+                                            placeholder="Adresse" required>
+                                        {% if form.adresse.errors %}
+                                            <span class="error-message">{{ form.adresse.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_email">Email</label>
+                                        <input type="email" class="form-control" id="id_email" name="email"
+                                            placeholder="Email" required>
+                                        {% if form.email.errors %}
+                                            <span class="error-message">{{ form.email.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_telephone">Téléphone</label>
+                                        <input type="text" class="form-control" id="id_telephone" name="telephone"
+                                            placeholder="Téléphone" required>
+                                        {% if form.telephone.errors %}
+                                            <span class="error-message">{{ form.telephone.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_categorie">Catégorie</label>
+                                        <select class="form-control" id="id_categorie" name="categorie" required>
+                                            {% for categorie in categories %}
+                                            <option value="{{ categorie.id }}">{{ categorie.nom }}</option>
+                                            {% endfor %}
+                                        </select>
+                                        {% if form.categorie.errors %}
+                                            <span class="error-message">{{ form.categorie.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_remarque">Remarque</label>
+                                        <textarea class="form-control" id="id_remarque" name="remarque"
+                                            rows="4"></textarea>
+                                        {% if form.remarque.errors %}
+                                            <span class="error-message">{{ form.remarque.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <div class="form-group">
+                                        <label for="id_photo">Photo</label>
+                                        <input type="file" class="form-control" id="id_photo" name="photo">
+                                        {% if form.photo.errors %}
+                                            <span class="error-message">{{ form.photo.errors }}</span>
+                                        {% endif %}
+                                    </div>
+                                    <button type="submit" class="btn btn-primary me-2">Ajouter</button>
+                                    <button type="reset" class="btn btn-light">Annuler</button>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- content-wrapper ends -->
+            <!-- partial:../../partials/_footer.html -->
+            {% include 'partials/_footer.html' %}
+            <!-- partial -->
+        </div>
+    </div>
+    <!-- page-body-wrapper ends -->
+</div>
+
+
+
+<script>
+
+    {% if messages %}
+        {% for message in messages %}
+            {% if message.tags == 'success' %}
+                $(document).ready(function() {
+                    Swal.fire({
+                        icon: 'success',
+                        title: 'Succès',
+                        text: 'Fournisseur enregistré avec succès.',
+                        width: '500px', // Vous pouvez ajuster la largeur selon vos besoins
+                        height: '600px',
+                        showCancelButton: true,
+                        confirmButtonText: 'Voir la liste des fournisseurs',
+                        cancelButtonText: 'Ajouter fournisseur',
+
+                        buttonsStyling: true //
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            window.location.href = "{% url 'Gestn_fournisseurs:Liste_fournisseurs' %}";
+                        }
+                    });
+                });
+            {% elif message.tags == 'error' %}
+                $(document).ready(function() {
+                    Swal.fire({
+                        icon: 'error',
+                        title: 'Erreur',
+                        text: 'Erreur lors de l\'enregistrement du fournisseur. Veuillez corriger les erreurs.',
+                        width: '500px', // Vous pouvez ajuster la largeur selon vos besoins
+                        height: '600px',
+                        confirmButtonText: 'Corriger erreur',
+                    });
+                });
+            {% endif %}
+        {% endfor %}
+    {% endif %}
+</script>
+
+{% endblock %}

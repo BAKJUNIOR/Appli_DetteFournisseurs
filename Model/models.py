@@ -10,12 +10,13 @@ class Categorie(models.Model):
 
 
 class Fournisseur(models.Model):
-    nom = models.CharField(max_length=100)
+    nom = models.CharField(max_length=100, unique=True)
     adresse = models.CharField(max_length=200)
     email = models.EmailField()
     telephone = models.CharField(max_length=20)
     categorie = models.ForeignKey(Categorie, on_delete=models.CASCADE)
     remarque = models.TextField(blank=True, null=True)
+    photo = models.ImageField(upload_to='photos_fournisseurs/', blank=True, null=True)
 
     def __str__(self):
         return self.nom

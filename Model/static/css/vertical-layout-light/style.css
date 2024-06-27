@@ -11619,11 +11619,19 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
   border-color: #F1F1F1;
 }
 
+.btn-edit {
+  color: #000;
+  background-color: #0b3b81;
+  border-color:#0b3b81;
+}
+
 .btn-success {
   color: #000;
   background-color: #34B1AA;
   border-color: #34B1AA;
 }
+
+
 
 .btn-success:hover {
   color: #000;
@@ -13431,7 +13439,7 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 .page-link {
   position: relative;
   display: block;
-  color: #0d6efd;
+  color: #0b3b81;
   text-decoration: none;
   background-color: #fff;
   border: 1px solid #dee2e6;
@@ -13446,14 +13454,14 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 
 .page-link:hover {
   z-index: 2;
-  color: #0a58ca;
+  color: #0b3b81;
   background-color: #e9ecef;
   border-color: #dee2e6;
 }
 
 .page-link:focus {
   z-index: 3;
-  color: #0a58ca;
+  color: #0b3b81;
   background-color: #e9ecef;
   outline: 0;
   box-shadow: 0 0 0 0.25rem rgba(13, 110, 253, 0.25);
@@ -13466,8 +13474,8 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 .page-item.active .page-link {
   z-index: 3;
   color: #fff;
-  background-color: #0d6efd;
-  border-color: #0d6efd;
+  background-color: #0b3b81;
+  border-color: #0b3b81;
 }
 
 .page-item.disabled .page-link {
@@ -16402,11 +16410,11 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 }
 
 .bg-warning, .settings-panel .color-tiles .tiles.warning {
-  background-color: #ffaf00 !important;
+  background-color: #cebb91 !important;
 }
 
 .bg-danger, .settings-panel .color-tiles .tiles.danger {
-  background-color: #F95F53 !important;
+  background-color: #db773b !important;
 }
 
 .bg-light, .settings-panel .color-tiles .tiles.light, .settings-panel .color-tiles .tiles.default {
@@ -16414,8 +16422,9 @@ fieldset:disabled .swal2-modal .swal2-buttonswrapper .swal2-styled,
 }
 
 .bg-dark, .settings-panel .color-tiles .tiles.dark {
-  background-color: #1E283D !important;
+  background-color: #143c93 !important;
 }
+
 
 .bg-body {
   background-color: #fff !important;
@@ -24406,13 +24415,13 @@ dl li {
 
 /* pagination variations */
 .pagination-primary .page-item.active .page-link {
-  background: #1F3BB3;
-  border-color: #1F3BB3;
+  background: #0b3b81;
+  border-color: #0b3b81;
 }
 
 .pagination-primary .page-item:hover .page-link {
-  background: #2342c9;
-  border-color: #1F3BB3;
+  background: #0b3b81;
+  border-color: #0b3b81;
   color: #ffffff;
 }
 
